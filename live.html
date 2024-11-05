@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Template</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+
+    .template-container {
+      position: relative;
+      width: 400px; /* Adjust based on the actual template size */
+      height: 600px; /* Adjust based on the actual template size */
+      background-image: url('template.jpg'); /* Replace with actual path to the template */
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* Circle frame for the uploaded image */
+    .circle-frame {
+      position: absolute;
+      top: 265px; /* Adjust to match the circle position */
+      left: 30px; /* Adjust to match the circle position */
+      width: 130px; /* Match the circle size */
+      height: 130px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #fff; /* Border color around the circle */
+    }
+
+    /* Image within the circle */
+    .circle-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* File input */
+    .upload-button {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Upload Your Photo</h2>
+  
+  <!-- File input for uploading the image -->
+  <input type="file" accept="image/*" id="fileInput" class="upload-button">
+
+  <!-- Template container with the circle frame -->
+  <div class="template-container">
+    <div class="circle-frame">
+      <img id="uploadedImage" alt="Your photo">
+    </div>
+  </div>
+
+  <script>
+    // JavaScript to handle the image upload
+    document.getElementById('fileInput').addEventListener('change', function(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('uploadedImage').src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
+
+</body>
+</html>
